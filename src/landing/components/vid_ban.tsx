@@ -1,28 +1,38 @@
 import { useEffect, useState } from "react";
 
 const VideoBanner = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const videoUrl =
-    "https://player.cloudinary.com/embed/?public_id=ban_bzq7qb&cloud_name=dbvionnxs&profile=cld-default&player[muted]=true&player[autoplay]=true&player[loop]=true&player[controls]=false";
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Detect mobile screens
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const desktopVideoUrl =
+    "https://player.cloudinary.com/embed/?public_id=ban_bzq7qb&cloud_name=dbvionnxs&player[autoplay]=true&player[loop]=true&player[muted]=true&player[controls]=false";
+
+  const mobileVideoUrl =
+    "https://player.cloudinary.com/embed/?public_id=ban_mobile_lormlv&cloud_name=dbvionnxs&player[autoplay]=true&player[loop]=true&player[muted]=true&player[controls]=false";
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0">
         <iframe
-          src={videoUrl}
-          className="w-[100vw] h-[100vh] scale-[1.5] transform-gpu"
-          allow="autoplay; fullscreen; muted"
-          frameBorder="0"
+          src={isMobile ? mobileVideoUrl : desktopVideoUrl}
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full object-cover  scale-[1.5] transform-gpu"
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%) scale(1.5)",
+            width: "100vw",
+            height: "100vh",
+            border: "none", // No border for iframe
           }}
         ></iframe>
       </div>
@@ -32,25 +42,10 @@ const VideoBanner = () => {
 
       {/* Text Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-        <h1
-          className={`text-5xl font-bold mb-6 transform transition-all duration-1000 
-            ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-        >
+        <h1 className="text-5xl font-bold mb-6">
           Transform Your Kitchen with AI
         </h1>
-
-        <p
-          className={`text-xl max-w-2xl transform transition-all duration-1000 delay-500
-            ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-        >
+        <p className="text-xl max-w-2xl">
           Turn your available ingredients into delicious recipes instantly with
           our advanced AI technology. No more wasted food or boring meals!
         </p>

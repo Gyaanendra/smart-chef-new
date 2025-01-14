@@ -1,19 +1,20 @@
 // components/Footer.tsx
-import React from 'react';
-
+import React from "react";
+import logo from "../../assets/logo.svg";
 const Footer: React.FC = () => {
   return (
     <>
       <footer className="bg-black text-white py-8 px-4 text-center">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-          <img 
-            src="./logo.png" 
-            alt="SmartChef Logo" 
+          <img
+            src={logo}
+            alt="SmartChef Logo"
             className="w-32 h-auto transition-transform duration-300 hover:rotate-360"
           />
           <p className="flex items-center gap-2">
-            © {new Date().getFullYear()} SmartChef. All rights reserved. | Made with
-            <i className="fas fa-heart text-white animate-pulse"></i> 
+            © {new Date().getFullYear()} SmartChef. All rights reserved. | Made
+            with
+            <i className="fas fa-heart text-white animate-pulse"></i>
             for food lovers
           </p>
         </div>

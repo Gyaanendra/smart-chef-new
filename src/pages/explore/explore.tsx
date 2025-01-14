@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import NotLoggedIn from "../../components_global/notLogin"; // Import the NotLoggedIn component
 import Navbar from "../../components_global/navbar";
-
+import RecipeGrid from "./components/recipes";
 export default function ExplorePage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -13,7 +13,7 @@ export default function ExplorePage() {
 
       {/* Render when the user is signed in */}
       <SignedIn>
-        <div className="flex flex-col items-center justify-center min-h-screen p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 mt-16">
           <h1 className="text-4xl font-semibold text-gray-800 mb-6">
             Welcome to the Explore Page!
           </h1>
@@ -21,9 +21,7 @@ export default function ExplorePage() {
             Here, you can discover amazing content, curated recommendations, and
             more. Start exploring now!
           </p>
-          <button className="px-6 py-3 bg-green-600 text-white font-medium rounded-full shadow-md hover:bg-green-700 transition duration-300">
-            Explore Now
-          </button>
+          <RecipeGrid />
         </div>
       </SignedIn>
     </div>

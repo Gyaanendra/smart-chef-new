@@ -25,12 +25,12 @@ const Navbar = () => {
       href: "/explore",
     },
     {
-      title: "get-recomendations",
+      title: "Get-Recomendations",
       icon: <Settings className="w-5 h-5" />,
       href: "/reconmendation",
     },
     {
-      title: "genrate recipes",
+      title: "Genrate-Recipes",
       icon: <BrainCircuit className="w-5 h-5" />,
       href: "/genrate",
     },
