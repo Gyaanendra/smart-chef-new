@@ -1,34 +1,31 @@
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import NotLoggedIn from "../../components_global/notLogin";
 import Navbar from "../../components_global/navbar";
+import { RecipePreviewGenerator } from "./components/RecipePreviewGenerator";
 
 export default function RecommendationPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <main className="container mx-auto px-4 py-8">
-        <SignedOut>
-          <NotLoggedIn />
-        </SignedOut>
+      <SignedOut>
+        <NotLoggedIn />
+      </SignedOut>
 
-        <SignedIn>
-          <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-3xl font-bold mb-4">
-              Welcome to the Recommendations Page!
+      <SignedIn>
+        <div className="container mx-auto px-4 pt-24 pb-8">
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              AI Recipe Generator
             </h1>
-
-            <p className="text-gray-600 mb-8">
-              Here, you can discover amazing content, curated recommendations,
-              and more. Start exploring now!
+            <p className="text-lg text-gray-600">
+              Describe the type of recipes you'd like to create, and our AI will generate personalized recipes just for you!
             </p>
-
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-              Explore Now
-            </button>
           </div>
-        </SignedIn>
-      </main>
+
+          <RecipePreviewGenerator />
+        </div>
+      </SignedIn>
     </div>
   );
 }
