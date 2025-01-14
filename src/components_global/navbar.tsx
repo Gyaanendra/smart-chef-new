@@ -27,7 +27,7 @@ const Navbar = () => {
     {
       title: "Get-Recomendations",
       icon: <Settings className="w-5 h-5" />,
-      href: "/reconmendation",
+      href: "/recommendation",
     },
     {
       title: "Genrate-Recipes",
