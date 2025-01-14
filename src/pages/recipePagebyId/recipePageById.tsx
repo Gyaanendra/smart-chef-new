@@ -60,7 +60,6 @@ function RecipePageById() {
       <div className="mt-20">
         <RecipeDetail recipe={recipe} />
         <div className="mt-11">
-          <h1>MoreRecipe</h1>
           <MoreRecipe recipe={recipe} />
         </div>
       </div>

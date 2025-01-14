@@ -37,7 +37,6 @@ const MoreRecipe: React.FC<RecipeProps> = ({ recipe }) => {
   const transformData = (
     recipeData: RecipeProps["recipe"]
   ): TransformedData => {
-    // Just convert to array by splitting on commas
     const ingredients = recipeData.CleanedIngredients.split(",")
       .map((item) => item.trim())
       .filter(Boolean);
@@ -95,55 +94,61 @@ const MoreRecipe: React.FC<RecipeProps> = ({ recipe }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-      {recipes.map((recipe) => (
-        <div
-          key={recipe.unique_id}
-          className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
-        >
-          <img
-            src={recipe.image_src}
-            alt={recipe.TranslatedRecipeName}
-            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-              e.currentTarget.src = "/placeholder-recipe.jpg";
-            }}
-            className="w-full h-48 object-cover"
-          />
-          <div className="p-5 flex-grow flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-bold mb-2 line-clamp-2 text-gray-800">
-                {recipe.TranslatedRecipeName}
-              </h3>
-              <div className="flex justify-between text-sm text-gray-600 mb-4">
-                <span className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-blue-500" />
-                  {recipe.TotalTimeInMins} mins
-                </span>
-                <span className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-green-500" />
-                  Serves {recipe.Servings}
-                </span>
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">More Recipes</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+        {recipes.map((recipe) => (
+          <div
+            key={recipe.unique_id}
+            className="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col"
+          >
+            {/* Image Section */}
+            <img
+              src={recipe.image_src}
+              alt={recipe.TranslatedRecipeName}
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                e.currentTarget.src = "/placeholder-recipe.jpg";
+              }}
+              className="w-full h-48 object-cover"
+            />
+
+            {/* Details Section */}
+            <div className="p-4 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-bold mb-2 text-gray-800 line-clamp-2">
+                  {recipe.TranslatedRecipeName}
+                </h3>
+                <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-4 h-4 text-blue-500" />
+                    {recipe.TotalTimeInMins} mins
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Users className="w-4 h-4 text-green-500" />
+                    Serves {recipe.Servings}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                    {recipe.Cuisine}
+                  </span>
+                  <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                    {recipe.Diet}
+                  </span>
+                  <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
+                    {recipe.Course}
+                  </span>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                  {recipe.Cuisine}
-                </span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
-                  {recipe.Diet}
-                </span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
-                  {recipe.Course}
-                </span>
-              </div>
+              <a href={`/recipe/${recipe.unique_id}`}>
+                <button className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                  View Recipe
+                </button>
+              </a>
             </div>
-            <a href={`/recipe/${recipe.unique_id}`}>
-              <button className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-200">
-                View Recipe
-              </button>
-            </a>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
