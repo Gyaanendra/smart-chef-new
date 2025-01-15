@@ -17,7 +17,7 @@ export default function GeneratePage() {
           {" "}
           {/* Increased padding-top */}
           <h1 className="text-4xl font-semibold text-gray-800 mb-6 text-center">
-            Recipe Generator
+            Recipe Recommender
           </h1>
           <p className="text-lg text-gray-600 text-center mb-8">
             Enter your available ingredients and cooking preferences to get
