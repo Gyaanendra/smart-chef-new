@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState } from "react";
 
 interface RecipeFormProps {
   onSubmit: (ingredients: string[], prepTime: number, cookTime: number) => void;
@@ -11,12 +11,8 @@ export const RecipeForm = ({ onSubmit }: RecipeFormProps) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const ingredientsList = ingredients.split(",").map(i => i.trim());
-    onSubmit(
-      ingredientsList,
-      parseInt(prepTime),
-      parseInt(cookTime)
-    );
+    const ingredientsList = ingredients.split(",").map((i) => i.trim());
+    onSubmit(ingredientsList, parseInt(prepTime), parseInt(cookTime));
   };
 
   return (
@@ -66,11 +62,11 @@ export const RecipeForm = ({ onSubmit }: RecipeFormProps) => {
           </div>
         </div>
 
-        <button 
+        <button
           type="submit"
           className="w-full px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition duration-300"
         >
-          Generate Recipe
+          Recommend Recipe
         </button>
       </form>
     </div>
