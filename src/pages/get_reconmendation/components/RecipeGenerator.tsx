@@ -151,7 +151,7 @@ export const RecipeGenerator: React.FC = (): JSX.Element => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Generate Your Recipe
+        Get Your Recipe recommendation
       </h2>
 
       <RecipeForm onSubmit={handleSubmit} />
